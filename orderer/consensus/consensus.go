@@ -120,6 +120,9 @@ type ConsenterSupport interface {
 	// WriteBlock commits a block to the ledger.
 	WriteBlock(block *cb.Block, encodedMetadataValue []byte)
 
+	// WriteBlockSync commits a block to the ledger.
+	WriteBlockSync(block *cb.Block, encodedMetadataValue []byte)
+
 	// WriteConfigBlock commits a block to the ledger, and applies the config update inside.
 	WriteConfigBlock(block *cb.Block, encodedMetadataValue []byte)
 
@@ -137,7 +140,7 @@ type ConsenterSupport interface {
 	Append(block *cb.Block) error
 }
 
-// NoOpMetadataValidator implements a MetadataValidator that always returns nil error irrespecttive of the inputs.
+// NoOpMetadataValidator implements a MetadataValidator that always returns nil error irrespective of the inputs.
 type NoOpMetadataValidator struct{}
 
 // ValidateConsensusMetadata determines the validity of a ConsensusMetadata update during config updates

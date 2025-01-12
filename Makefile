@@ -50,7 +50,7 @@ FABRIC_VER ?= 3.0.0
 
 # 3rd party image version
 # These versions are also set in the runners in ./integration/runners/
-COUCHDB_VER ?= 3.3.3
+COUCHDB_VER ?= 3.4.2
 
 # Disable implicit rules
 .SUFFIXES:
@@ -77,7 +77,7 @@ METADATA_VAR += CommitSHA=$(EXTRA_VERSION)
 METADATA_VAR += BaseDockerLabel=$(BASE_DOCKER_LABEL)
 METADATA_VAR += DockerNamespace=$(DOCKER_NS)
 
-GO_VER = 1.23.1
+GO_VER = 1.23.4
 GO_TAGS ?=
 
 RELEASE_EXES = orderer $(TOOLS_EXES)
@@ -352,7 +352,7 @@ spaces: # Check for spaces in file names
 
 .PHONY: docs
 docs: # Builds the documentation in html format
-	@docker run --rm -v $$(pwd):/docs n42org/tox:3.4.0 sh -c 'cd /docs && tox -e docs'
+	@docker run --rm -v $$(pwd):/docs python:3.12-slim sh -c 'pip install --no-input tox && cd /docs && tox -e docs'
 
 .PHONY: ccaasbuilder-clean
 ccaasbuilder-clean/%:
